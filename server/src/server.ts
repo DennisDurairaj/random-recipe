@@ -7,6 +7,9 @@ import axios from "axios";
 require("dotenv").config();
 
 const router: Express = express();
+axios.defaults.params = {
+  apiKey: process.env.apiKey as string,
+};
 
 router.use(morgan("dev"));
 router.use(express.urlencoded({ extended: false }));
