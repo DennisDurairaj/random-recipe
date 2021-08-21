@@ -11,7 +11,7 @@ const getRecipeList = async (
     // const result: AxiosResponse = await axios.get(
     //   `https://api.spoonacular.com/recipes/random?number=10`
     // );
-    return res.status(200).json(sampleResponse);
+    return res.status(200).json(sampleResponse.recipes);
   } catch (e) {
     res.status(e.response.status).json({
       message: e.response.data.message,

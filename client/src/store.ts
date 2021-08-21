@@ -1,7 +1,11 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import { recipeApi } from "./features/recipes/RecipeApi";
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    [recipeApi.reducerPath]: recipeApi.reducer,
+  },
+  middleware: (gDM) => gDM().concat(recipeApi.middleware),
 });
 
 export type AppDispatch = typeof store.dispatch;
