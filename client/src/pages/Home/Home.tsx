@@ -1,6 +1,6 @@
 import React from "react";
-import RecipeList from "../features/recipes/RecipeList";
-import { useGetRecipeListQuery } from "../features/recipes/RecipeApi";
+import RecipeList from "../../features/recipes/RecipeList";
+import { useGetRecipeListQuery } from "../../features/recipes/RecipeApi";
 
 interface Props {}
 
