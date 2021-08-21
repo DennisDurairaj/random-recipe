@@ -1,17 +1,21 @@
 import React from "react";
+import List from "../../components/List/List";
+import ListItem from "../../components/ListItem/ListItem";
+import { Recipe } from "./types";
 import styles from "./RecipeList.module.css";
 
-interface Props {}
+interface Props {
+  data: Recipe[];
+}
 
-const RecipeList = (props: Props) => {
+const RecipeList: React.FC<Props> = ({ data }) => {
   return (
-    <div className={styles.wrapper}>
-      <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-        <li>Item 4</li>
-      </ul>
+    <div className={styles.container}>
+      <List>
+        {data.map((item) => (
+          <ListItem image={item.image} title={item.title} />
+        ))}
+      </List>
     </div>
   );
 };
