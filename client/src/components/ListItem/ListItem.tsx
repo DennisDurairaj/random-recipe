@@ -6,9 +6,14 @@ interface Props {
   image?: string;
 }
 
-const ListItem: React.FC<Props> = ({ title, image, children }) => {
+const ListItem: React.FC<Props & React.HTMLAttributes<HTMLElement>> = ({
+  title,
+  image,
+  children,
+  ...props
+}) => {
   return (
-    <li className={styles.listItem}>
+    <li {...props} className={styles.listItem}>
       {image && <img className={styles.image} src={image} alt="title" />}
       <div className={styles.title}>{title}</div>
     </li>

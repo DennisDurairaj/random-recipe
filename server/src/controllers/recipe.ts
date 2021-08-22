@@ -2,6 +2,10 @@ import { Request, Response, NextFunction, response } from "express";
 import axios, { AxiosResponse } from "axios";
 import sampleResponse from "../sampleResponse.json";
 
+interface GetRecipeRequest {
+  id: string;
+}
+
 const getRecipeList = async (
   req: Request,
   res: Response,
@@ -19,4 +23,27 @@ const getRecipeList = async (
   }
 };
 
-export default { getRecipeList };
+const getRecipe = async (
+  req: Request<GetRecipeRequest, {}, {}, {}>,
+  res: Response,
+  next: NextFunction
+) => {
+  const { id } = req.params;
+  try {
+    // const result: AxiosResponse = await axios.get(
+    //   `https://api.spoonacular.com/recipes/random?number=10`
+    // );
+
+    const result = sampleResponse.recipes.find(
+      (item) => item.id === parseInt(id)
+    );
+
+    return res.status(200).json(result);
+  } catch (e) {
+    res.status(e.response.status).json({
+      message: e.response.data.message,
+    });
+  }
+};
+
+export default { getRecipeList, getRecipe };

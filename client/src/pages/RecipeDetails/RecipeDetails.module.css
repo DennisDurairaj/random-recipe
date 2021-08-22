@@ -1,0 +1,18 @@
+.container {
+  padding: 10px;
+}
+
+.image {
+  width: 300px;
+}
+
+.summary {
+  margin: 14px 0;
+  text-align: justify;
+}
+
+.instructions {
+  margin: 14px 0;
+  text-align: justify;
+  white-space: pre-line;
+}

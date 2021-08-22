@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router";
 import List from "../../components/List/List";
 import ListItem from "../../components/ListItem/ListItem";
 import { Recipe } from "./types";
@@ -9,11 +10,20 @@ interface Props {
 }
 
 const RecipeList: React.FC<Props> = ({ data }) => {
+  let history = useHistory();
+  const handleClick = (item: Recipe) => {
+    history.push(`/details/${item.id}`);
+  };
+
   return (
     <div className={styles.container}>
       <List>
         {data.map((item) => (
-          <ListItem image={item.image} title={item.title} />
+          <ListItem
+            onClick={() => handleClick(item)}
+            image={item.image}
+            title={item.title}
+          />
         ))}
       </List>
     </div>
