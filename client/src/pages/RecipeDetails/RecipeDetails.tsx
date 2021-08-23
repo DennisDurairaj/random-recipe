@@ -11,12 +11,6 @@ type RecipeDetailsParams = {
   id: string;
 };
 
-function transformInstructions(text: any) {
-  console.log(text);
-  const indexOfNewLine = text.indexOf("\n");
-  return <pre>{text}</pre>;
-}
-
 const RecipeDetails = (props: Props) => {
   const { id } = useParams<RecipeDetailsParams>();
   const recipeState = recipeApi.endpoints.getRecipeList.useQueryState();
@@ -47,16 +41,28 @@ const RecipeDetails = (props: Props) => {
         <div className={styles.container}>
           <h1>{recipe.title}</h1>
           <img className={styles.image} src={recipe.image} alt={recipe.title} />
-          <div>{recipe.readyInMinutes} minutes</div>
+          <div>Ready in {recipe.readyInMinutes} minutes</div>
           <div>{recipe.servings} servings</div>
           <h2>Summary</h2>
           <div className={styles.summary}>
             {ReactHtmlParser(recipe.summary)}
           </div>
+          <h2>Ingredients</h2>
+          <ul className={styles.ingredients}>
+            {recipe.extendedIngredients.map((ingredient) => (
+              <li>{ingredient.original}</li>
+            ))}
+          </ul>
           <h2>Instructions</h2>
-          <div className={styles.instructions}>
-            {transformInstructions(recipe.instructions)}
-          </div>
+          <ul className={styles.instructions}>
+            {recipe.analyzedInstructions.map((instructions) => {
+              return instructions.steps.map(({ step }, index) => (
+                <li>
+                  {index + 1}. {step}
+                </li>
+              ));
+            })}
+          </ul>
         </div>
       )}
     </>

@@ -5,6 +5,8 @@ body,
 #root,
 #root > div {
   height: 100%;
+  color: #333;
+  line-height: 26px;
 }
 
 @font-face {

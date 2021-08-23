@@ -7,5 +7,22 @@ export interface Recipe {
   image: string;
   imageType: string;
   summary: string;
-  instructions: string;
+  analyzedInstructions: Instructions[];
+  extendedIngredients: Ingredients[];
+}
+
+export interface Ingredients {
+  id: number;
+  name: string;
+  original: string;
+}
+
+export interface Instructions {
+  name: string;
+  steps: Step[];
+}
+
+export interface Step {
+  number: number;
+  step: string;
 }
