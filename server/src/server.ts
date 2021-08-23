@@ -4,6 +4,9 @@ import morgan from "morgan";
 import cors from "cors";
 import routes from "./routes/recipe";
 import axios from "axios";
+import swaggerUi from "swagger-ui-express";
+import * as swaggerDoc from "./swagger.json";
+
 require("dotenv").config();
 
 const router: Express = express();
@@ -34,6 +37,7 @@ router.use((req, res, next) => {
 });
 
 router.use("/", routes);
+router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
 router.use((req, res, next) => {
   const error = new Error("not found");

@@ -1,0 +1,150 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Random Recipe API",
+    "version": "1.0.0",
+    "description": "Backend API for Random Recipe App"
+  },
+  "paths": {
+    "/recipes": {
+      "get": {
+        "tags": ["Recipe Information"],
+        "summary": "Returns a list of recipes.",
+        "description": "This endpoint returns a random list of recipes from the Spoonacular API.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Recipe"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/recipes/{id}": {
+      "get": {
+        "tags": ["Recipe Information"],
+        "summary": "Get details of a recipe",
+        "description": "This endpoint returns the details of the recipe id provided in the URL.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Recipe"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Recipe": {
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "readyInMinutes": {
+          "type": "number"
+        },
+        "servings": {
+          "type": "string"
+        },
+        "sourceUrl": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "imageType": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "analyzedInstructions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Instructions"
+          }
+        },
+        "extendedIngredients": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Ingredients"
+          }
+        }
+      }
+    },
+    "Ingredients": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "original": {
+          "type": "string"
+        }
+      }
+    },
+    "Instructions": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Step"
+          }
+        }
+      }
+    },
+    "Step": {
+      "properties": {
+        "number": {
+          "type": "number"
+        },
+        "step": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
