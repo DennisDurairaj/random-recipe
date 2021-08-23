@@ -20,6 +20,7 @@ const RecipeList: React.FC<Props> = ({ data }) => {
       <List>
         {data.map((item) => (
           <ListItem
+            key={item.id}
             onClick={() => handleClick(item)}
             image={item.image}
             title={item.title}

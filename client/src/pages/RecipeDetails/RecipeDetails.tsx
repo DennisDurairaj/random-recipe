@@ -53,14 +53,14 @@ const RecipeDetails = (props: Props) => {
           <h2>Ingredients</h2>
           <ul className={styles.ingredients}>
             {recipe.extendedIngredients.map((ingredient) => (
-              <li>{ingredient.original}</li>
+              <li key={ingredient.id}>{ingredient.original}</li>
             ))}
           </ul>
           <h2>Instructions</h2>
           <ul className={styles.instructions}>
             {recipe.analyzedInstructions.map((instructions) => {
               return instructions.steps.map(({ step }, index) => (
-                <li>
+                <li key={index}>
                   {index + 1}. {step}
                 </li>
               ));
