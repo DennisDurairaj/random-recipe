@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
-import logo from "./assets/images/logo_transparent.png";
+import Header from "./components/Header/Header";
 import Home from "./pages/Home/Home";
 import RecipeDetails from "./pages/RecipeDetails/RecipeDetails";
 
@@ -9,11 +9,7 @@ function App() {
   return (
     <Router>
       <div className="wrapper">
-        <nav>
-          <div className="logo">
-            <img src={logo} alt="Logo" />
-          </div>
-        </nav>
+        <Header />
         <Switch>
           <Route exact path="/">
             <Home />
