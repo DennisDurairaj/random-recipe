@@ -37,7 +37,11 @@ const RecipeDetails = (props: Props) => {
   }, [result.data]);
 
   if (result.isError) {
-    throw result.error;
+    let error = result.error as any;
+    if (error.status === 404) {
+      return <div>{error.data}</div>;
+    }
+    throw error;
   }
 
   return (

@@ -38,6 +38,10 @@ const getRecipe = async (
       (item) => item.id === parseInt(id)
     );
 
+    if (result === undefined) {
+      return res.status(404).json(`Recipe with id ${id} does not exist.`);
+    }
+
     return res.status(200).json(result);
   } catch (e) {
     res.status(e.response.status).json({
