@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactHtmlParser from "react-html-parser";
 import { useParams } from "react-router-dom";
+import Spinner from "../../components/Spinner/Spinner";
 import { Recipe } from "../../features/recipes/types";
 import { recipeApi } from "../../services/RecipeApi";
 import styles from "./RecipeDetails.module.css";
@@ -37,6 +38,11 @@ const RecipeDetails = (props: Props) => {
 
   return (
     <>
+      {(recipeState.isLoading || result.isLoading) && (
+        <div className={styles.spinner}>
+          <Spinner />
+        </div>
+      )}
       {recipe && (
         <div className={styles.container}>
           <h1>{recipe.title}</h1>
