@@ -7,17 +7,17 @@ export interface Recipe {
   image: string;
   imageType: string;
   summary: string;
-  analyzedInstructions: Instructions[];
-  extendedIngredients: Ingredients[];
+  analyzedInstructions: Instruction[];
+  extendedIngredients: Ingredient[];
 }
 
-export interface Ingredients {
+export interface Ingredient {
   id: number;
   name: string;
   original: string;
 }
 
-export interface Instructions {
+export interface Instruction {
   name: string;
   steps: Step[];
 }
