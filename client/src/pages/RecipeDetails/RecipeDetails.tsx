@@ -40,13 +40,16 @@ const RecipeDetails = (props: Props) => {
       {recipe && (
         <div className={styles.container}>
           <h1>{recipe.title}</h1>
-          <img className={styles.image} src={recipe.image} alt={recipe.title} />
-          <div>Ready in {recipe.readyInMinutes} minutes</div>
-          <div>{recipe.servings} servings</div>
-          <h2>Summary</h2>
-          <div className={styles.summary}>
-            {ReactHtmlParser(recipe.summary)}
+          <div className={styles.header}>
+            <img src={recipe.image} alt={recipe.title} />
+            <div>Ready in {recipe.readyInMinutes} minutes</div>
+            <div>{recipe.servings} servings</div>
+            <h2>Summary</h2>
+            <div className={styles.summary}>
+              {ReactHtmlParser(recipe.summary)}
+            </div>
           </div>
+
           <h2>Ingredients</h2>
           <ul className={styles.ingredients}>
             {recipe.extendedIngredients.map((ingredient) => (
