@@ -7,7 +7,11 @@ import styles from "./Home.module.css";
 interface Props {}
 
 const Home = (props: Props) => {
-  const { data, isError, isLoading } = useGetRecipeListQuery();
+  const { data, isError, error, isLoading } = useGetRecipeListQuery();
+
+  if (isError) {
+    throw error;
+  }
 
   return (
     <div className={styles.container}>

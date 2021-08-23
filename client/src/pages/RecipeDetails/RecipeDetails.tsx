@@ -36,6 +36,10 @@ const RecipeDetails = (props: Props) => {
     }
   }, [result.data]);
 
+  if (result.isError) {
+    throw result.error;
+  }
+
   return (
     <>
       {(recipeState.isLoading || result.isLoading) && (
