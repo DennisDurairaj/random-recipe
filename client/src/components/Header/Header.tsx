@@ -7,7 +7,7 @@ interface Props {}
 const Header = (props: Props) => {
   return (
     <nav>
-      <div className="logo">
+      <div data-cy="logo" className="logo">
         <Link to="/">
           <img src={logo} alt="Logo" />
         </Link>

@@ -16,7 +16,7 @@ const RecipeList: React.FC<Props> = ({ data }) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div data-cy="list" className={styles.container}>
       <List>
         {data.map((item) => (
           <ListItem
